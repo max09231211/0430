@@ -1,11 +1,13 @@
+/* 全域變數設定：慵懶 Jazz / Indie Lo-fi 風格 */
 :root {
-    --bg-color: #FAFAF8;
-    --bg-alt: #F0EFEB; /* 淺燕麥色 */
-    --text-main: #2C3338;
-    --text-light: #5A656B;
-    --accent-color: #556B7D;
-    --border-color: #E2E2DF;
-    --font-en: 'Inter', sans-serif;
+    --bg-color: #F8F5F0; /* 暖調奶油白，像有溫度的紙張 */
+    --bg-alt: #EBE5D9;   /* 拿鐵燕麥色，增加微醺的層次感 */
+    --text-main: #4A423B; /* 咖啡深棕色，比純黑更溫柔、不刺眼 */
+    --text-light: #8A8175; /* 褪色感的次要文字 */
+    --accent-color: #B07D62; /* 帶有秋天復古感的焦糖赤陶色 */
+    --border-color: #DED7C8;
+    
+    --font-en: 'Lora', serif; /* 復古慵懶的英文字體 */
     --font-tw: 'Noto Serif TC', serif;
 }
 
@@ -16,16 +18,26 @@ body {
     font-family: var(--font-en);
     background-color: var(--bg-color);
     color: var(--text-main);
-    line-height: 1.8;
+    line-height: 1.85; /* 稍微加寬行高，讓閱讀更有呼吸感 */
 }
 
-p { font-family: var(--font-tw); color: var(--text-light); font-size: 1.1rem; }
+h1, h2, h3 {
+    font-weight: 500;
+}
+
+p { 
+    font-family: var(--font-tw); 
+    color: var(--text-light); 
+    font-size: 1.1rem; 
+    letter-spacing: 0.5px; /* 中文稍微拉開字距，增加鬆弛感 */
+    margin-bottom: 1.5rem;
+}
 
 /* 導覽列 */
 .navbar {
     position: fixed;
     top: 0; width: 100%;
-    background-color: rgba(250, 250, 248, 0.95);
+    background-color: rgba(248, 245, 240, 0.95); /* 配合背景色 */
     backdrop-filter: blur(5px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
@@ -45,7 +57,7 @@ p { font-family: var(--font-tw); color: var(--text-light); font-size: 1.1rem; }
 .nav-links { list-style: none; display: flex; gap: 2rem; }
 .nav-links a { 
     text-decoration: none; color: var(--text-light); 
-    font-size: 0.95rem; position: relative; padding-bottom: 4px;
+    font-size: 1rem; position: relative; padding-bottom: 4px;
 }
 .nav-links a:hover { color: var(--text-main); }
 .nav-links a::after {
@@ -55,52 +67,60 @@ p { font-family: var(--font-tw); color: var(--text-light); font-size: 1.1rem; }
 }
 .nav-links a:hover::after { width: 100%; }
 
-/* Sections */
+/* Sections 共用 */
 .section { padding: 120px 2rem; min-height: 60vh; }
 .container { max-width: 900px; margin: 0 auto; }
-.section-title { font-size: 2rem; font-weight: 300; margin-bottom: 3.5rem; text-align: center; letter-spacing: 2px; }
+.section-title { font-size: 2rem; font-weight: 500; margin-bottom: 3.5rem; text-align: center; letter-spacing: 2px; }
 
 /* 背景交替 */
 .about-section, .courses-section { background-color: var(--bg-alt); }
 
 /* Hero */
 .hero-section { min-height: 100vh; text-align: center; display: flex; align-items: center; }
-.hero-title { font-size: 3.5rem; font-weight: 600; margin-bottom: 1.5rem; }
+.hero-title { font-size: 3.5rem; font-weight: 500; margin-bottom: 1.5rem; }
 .chinese-name { font-family: var(--font-tw); font-weight: 400; color: var(--accent-color); margin-left: 10px; }
 .hero-subtitle { max-width: 600px; margin: 0 auto 3rem; }
 .hero-actions { display: flex; justify-content: center; gap: 1rem; }
 
-.btn { padding: 0.8rem 2.5rem; border-radius: 4px; text-decoration: none; transition: all 0.3s ease; }
-.btn-primary { background: var(--text-main); color: #fff; }
-.btn-secondary { border: 1px solid var(--border-color); color: var(--text-main); }
-.btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+/* 按鈕樣式 (圓潤膠囊狀) */
+.btn { padding: 0.8rem 2.5rem; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; cursor: pointer;}
+.btn-primary { background: var(--text-main); color: var(--bg-color); border: 1px solid var(--text-main); }
+.btn-secondary { border: 1px solid var(--text-main); color: var(--text-main); }
+.btn-primary:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; transform: translateY(-2px); }
+.btn-secondary:hover { background: rgba(74, 66, 59, 0.05); transform: translateY(-2px); }
+
+/* About Content */
+.about-content { background: #fff; padding: 3.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(74, 66, 59, 0.04); }
 
 /* Skills Grid */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
 .skill-category h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--accent-color); border-left: 3px solid var(--accent-color); padding-left: 10px; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.tag { background: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border-color); color: var(--text-light); }
+/* 技能標籤 (溫潤圓角) */
+.tag { background: var(--bg-color); padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; border: 1px solid var(--border-color); color: var(--text-main); }
 
 /* Courses & Projects Cards */
 .courses-grid, .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s ease; }
+/* 卡片 (圓潤、柔和陰影) */
+.card { background: #fff; padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(74, 66, 59, 0.04); transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .card:hover { transform: translateY(-5px); }
 .card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
-.card-meta { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 1rem; }
-.card-desc { font-size: 0.95rem; margin-bottom: 1.5rem; }
+.card-meta { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 1rem; font-family: var(--font-en); }
+.card-desc { font-size: 0.95rem; margin-bottom: 0; }
 
 /* Contact */
 .contact-section { text-align: center; }
 .contact-item { 
     display: inline-block; padding: 0.8rem 3rem; border: 1px solid var(--text-main); 
-    border-radius: 50px; text-decoration: none; color: var(--text-main); font-weight: 600;
+    border-radius: 50px; text-decoration: none; color: var(--text-main); font-weight: 500;
+    transition: all 0.3s ease;
 }
-.contact-item:hover { background: var(--text-main); color: #fff; }
+.contact-item:hover { background: var(--text-main); color: var(--bg-color); }
 
 .footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border-color); color: var(--text-light); font-size: 0.85rem; }
 
 /* 手機選單 */
-.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: transparent; border: none; padding: 5px; }
 .menu-toggle .bar { width: 22px; height: 2px; background: var(--text-main); transition: 0.3s; }
 
 @media (max-width: 768px) {
@@ -115,4 +135,5 @@ p { font-family: var(--font-tw); color: var(--text-light); font-size: 1.1rem; }
     .nav-links a { padding: 1rem; display: block; }
     .hero-title { font-size: 2.5rem; display: flex; flex-direction: column; }
     .hero-actions { flex-direction: column; }
+    .about-content { padding: 2.5rem 1.5rem; }
 }
