@@ -1,4 +1,3 @@
-// --- 資料區 ---
 const skillsData = {
     academicResearch: ["Syntax & X-bar Theory", "Sociolinguistics", "Discourse Analysis", "Pragmatics"],
     languages: ["Mandarin Chinese (Native)", "English (Advanced)", "Spanish (Intermediate)", "Japanese (Beginner)"],
@@ -69,6 +68,8 @@ function initNav() {
     const navLinks = document.querySelector('.nav-links');
 
     menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('is-active');
     });
@@ -76,7 +77,9 @@ function initNav() {
     // 點擊後收合
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
             navLinks.classList.remove('active');
+            menuToggle.classList.remove('is-active');
         });
     });
 }
