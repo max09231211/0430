@@ -1,3 +1,4 @@
+// --- 1. 資料區 ---
 const skillsData = {
     academicResearch: ["Syntax & X-bar Theory", "Sociolinguistics", "Discourse Analysis", "Pragmatics"],
     languages: ["Mandarin Chinese (Native)", "English (Advanced)", "Spanish (Intermediate)", "Japanese (Beginner)"],
@@ -17,14 +18,16 @@ const projectsData = [
     { name: "Harvard Camp 活動統籌", meta: "Event Leadership", desc: "負責高中生營隊之時程管理與人員統籌，展現優秀的領導力與溝通邊界感。" }
 ];
 
-// --- 渲染邏輯 ---
+// --- 2. 啟動區 ---
 document.addEventListener('DOMContentLoaded', () => {
     renderSkills();
     renderCourses();
     renderProjects();
     initNav();
+    initScrollReveal(); // 啟動滾動浮現特效
 });
 
+// --- 3. 渲染邏輯 ---
 function renderSkills() {
     const grid = document.getElementById('skills-grid');
     const titles = { academicResearch: "學術研究", languages: "語言能力", professional: "實務經驗", techAndTools: "技術工具" };
@@ -63,6 +66,7 @@ function renderProjects() {
     `).join('');
 }
 
+// --- 4. 導覽列與特效邏輯 ---
 function initNav() {
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -74,7 +78,7 @@ function initNav() {
         menuToggle.classList.toggle('is-active');
     });
 
-    // 點擊後收合
+    // 手機版點擊選項後收合
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.setAttribute('aria-expanded', 'false');
@@ -82,4 +86,27 @@ function initNav() {
             menuToggle.classList.remove('is-active');
         });
     });
+}
+
+// 慵懶滾動浮現特效
+function initScrollReveal() {
+    // 找出所有需要動畫的元素
+    const elementsToReveal = document.querySelectorAll('.section-title, .about-content, .card, .skill-category');
+    
+    // 穿上隱形斗篷
+    elementsToReveal.forEach(el => el.classList.add('fade-in'));
+
+    // 建立觀察員
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // 動畫跑過就不用再看了
+            }
+        });
+    }, {
+        threshold: 0.15 // 露出 15% 就觸發
+    });
+
+    elementsToReveal.forEach(el => observer.observe(el));
 }
